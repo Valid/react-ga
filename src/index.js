@@ -476,6 +476,8 @@ export const plugin = {
 /**
  * outboundLink:
  * GA outboundLink tracking
+ * @param args.category {String} (optional)
+ * @param args.action {String} (optional)
  * @param args.label {String} e.g. url, or 'Create an Account'
  * @param {function} hitCallback - Called after processing a hit.
  */
@@ -495,8 +497,8 @@ export function outboundLink(args, hitCallback, trackerNames) {
     // Required Fields
     const fieldObject = {
       hitType: 'event',
-      eventCategory: 'Outbound',
-      eventAction: 'Click',
+      eventCategory: _format(args.category) || 'Outbound',
+      eventAction: _format(args.action) || 'Click',
       eventLabel: _format(args.label)
     };
 
